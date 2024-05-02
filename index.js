@@ -24,13 +24,18 @@ app.post('/auth/login',loginValidation, UserController.login);
 app.post('/auth/register', registerValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
 
-//app.get('/students', StudentController.getAllStudent);
-//app.get('/students/:id', StudentController.getOneStudent);
-app.post('/students',checkAuth, createStudentValidation, StudentController.createStudent);
-//app.delete('/students', StudentController.removeStudent);
-//app.patch('/students', StudentController.updateStudent);
+app.get('/students', StudentController.getAllStudents);
+app.get('/students/:id', StudentController.getOneStudent);
+app.post('/students', checkAuth, createStudentValidation, StudentController.createStudent);
+app.delete('/students/:id', checkAuth, StudentController.removeStudent);
+//app.patch('/students/:id', checkAuth, StudentController.updateStudent);
 
+app.get('/groups', GroupController.getAllGroups);
+app.get('/groups/:id', GroupController.getOneGroup);
 app.post('/groups',checkAuth, createGroupValidation, GroupController.createGroup);
+app.delete('/groups/:id',checkAuth, GroupController.removeGroup);
+app.patch('/groups/:id',checkAuth, GroupController.updateGroup);
+
 
 app.listen(4444, (err) => {
     if (err) {
